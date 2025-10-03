@@ -1,0 +1,11 @@
+[mgr]
+ratio = [0, 8, 0]
+
+[opener]
+play = [
+	{ run = 'clapper "$@"', orphan = true, for = "unix" },
+]
+edit = [
+	{ run = 'micro "$@"', block = true, for = "unix" },
+]
+
