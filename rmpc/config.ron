@@ -8,9 +8,9 @@
     cache_dir: None,
     on_song_change: None,
     volume_step: 5,
-    max_fps: 30,
+    max_fps: 75,
     scrolloff: 0,
-    wrap_navigation: false,
+    wrap_navigation: true,
     enable_mouse: true,
     enable_config_hot_reload: true,
     status_update_interval_ms: 1000,
@@ -36,7 +36,6 @@
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
             "2":       SwitchToTab("Artists"),
-            "3":       SwitchToTab("Search"),
             "q":       Quit,
             ">":       NextTrack,
             "p":       TogglePause,
@@ -113,7 +112,7 @@
         ],
     ),
     artists: (
-        album_display_mode: SplitByDate,
+        album_display_mode: NameOnly,
         album_sort_by: Date,
     ),
     tabs: [
@@ -132,10 +131,6 @@
         (
             name: "Artists",
             pane: Pane(AlbumArtists),
-        ),
-        (
-            name: "Search",
-            pane: Pane(Search),
         ),
     ],
 )

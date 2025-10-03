@@ -1,0 +1,113 @@
+window#waybar {
+	font-family: "MartianMono Nerd Font Propo";
+	font-size: 10pt;
+	font-weight: normal;
+	padding: 0;
+    background-color: transparent;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+button {
+	border: none;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+
+button:hover {
+	border-radius: 6pt;
+	color: #FBA554;
+	transition: 0.3s;
+	background-color: transparent;
+}
+
+#workspaces {
+	border: rgba(161, 255, 242, 0.6) 1px solid;
+	border-radius: 4pt;
+	font-size: 16px;
+	background-color: #0c0c1c;
+}
+
+#workspaces button.active {
+	color: #0ceccc;
+}
+
+#workspaces button.urgent {
+	color: #00efaa;
+}
+
+#clock {
+	min-width: 240px;
+	border-left: 1px solid rgba(161, 255, 242, 0.6);
+	border-bottom: 1px solid rgba(161, 255, 242, 0.6);
+	border-top: 1px solid rgba(161, 255, 242, 0.6);		
+	color: white;
+	background-color: #0c0c1c;
+	padding: 0 4pt 0 4pt;
+	margin: 0;
+	border-radius: 4pt 0 0 4pt;
+}
+
+#gamemode {
+	border-top: 1px solid rgba(161, 255, 242, 0.6);		
+	border-bottom: 1px solid rgba(161, 255, 242, 0.6);	
+	padding: 0 8pt 0 8pt;
+	margin: 0;
+	background-color: #0c0c1c;
+	color: white;
+}
+
+#gamemode.running {
+	color: #0ceccc;
+}
+
+#cpu {
+	min-width: 60px;
+	border-bottom: 1px solid rgba(161, 255, 242, 0.6);
+	border-top: 1px solid rgba(161, 255, 242, 0.6);
+	padding: 0 0 0 4pt;
+	background-color: #0c0c1c;
+	color: white;
+	margin: 0;
+}
+
+#memory {
+	min-width: 130px;
+	padding: 0 4pt 0 0;
+	margin: 0;
+	background-color: #0c0c1c;
+	border-bottom: 1px solid rgba(161, 255, 242, 0.6);
+	border-top: 1px solid rgba(161, 255, 242, 0.6);
+	color: white;
+}
+
+#mpd {
+	padding: 0 8pt 0 8pt;
+	background-color: #0c0c1c;
+	border-right: 1px solid rgba(161, 255, 242, 0.6);
+	border-radius: 0 4pt 4pt 0;
+	border-bottom: 1px solid rgba(161, 255, 242, 0.6);
+	border-top: 1px solid rgba(161, 255, 242, 0.6);
+	color: white;
+}
+
+#tray {
+	padding: 0 6pt 0 6pt;
+	border-radius: 4pt;
+	border: rgba(161, 255, 242, 0.6) 1px solid;
+	background-color: #0c0c1c;
+	color: white;
+}
+
+#custom-power {
+	border-radius: 4pt;
+	border: rgba(161, 255, 242, 0.6) 1px solid;
+	font-size: 19px;
+	padding: 0 5px 0 5px;
+    margin: 0 0 0 10px;
+    color: #0ceccc;
+    background-color: #0c0c1c;
+}

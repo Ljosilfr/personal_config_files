@@ -1,0 +1,92 @@
+// -*- mode: jsonc -*-
+{
+    "position": "top",
+    "ipc": true,
+    "spacing": 0,
+	"exclusive": true,
+	"layer": "top",
+	"height": 25,
+	"start_hidden": false,
+	"reload_style_on_change": true,
+	"margin-top": 5,
+	"margin-bottom": 0,
+	"margin-left": 8,
+	"margin-right": 8,
+
+	"modules-left": [
+		"hyprland/workspaces"	
+	],
+	
+    "modules-center": [
+        "clock",
+        "gamemode",
+        "cpu",
+        "memory",
+    	"mpd",       
+    ],
+
+    "modules-right": [
+    	"tray",
+        "custom/power" 
+    ],
+
+	"tray": {
+		"icon-size": 21,
+		"spacing": 15	
+	},
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"persistent-workspaces": {
+			"*": 6,	
+		},
+		"format-icons": {
+		"active": "",
+		"default": ""
+		}
+	},
+    "mpd": {
+    	"album-artist-len": 12,
+    	"title-len": 24,
+    	"format": "󰽰 {title} — {albumArtist} {stateIcon}",
+    	"on-click": "rmpc togglepause",
+    	"format-paused": "󰽰 {title} — {albumArtist} {stateIcon}",
+    	"format-stopped": "󰽰󰽼",
+		"justify": "center",
+    	"state-icons": {
+    		"playing": "󰽱",
+    		"paused": "󰽼"
+    	}    	
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "cpu": {
+    	"interval": 1,
+    	"format": " {usage}%"	
+    },
+    "gamemode": {
+    	"hide-not-running": false,
+    	"format": "{glyph} Gamemode",
+    	"format-alt": "",
+    	"icon-name": "gaming-app-symbolic",
+    	"use-icon": false,
+    	"icon-spacing": 0,
+    	"icon-size": 0,
+    	"glyph": "󰊴"
+    },
+    "memory": {
+    	"interval": 1,
+    	"format": " {percentage}%  󱧬 {swapPercentage}%"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": " {:%A, %B%e  󰥔 %T}",
+        "interval": 1
+    },
+    "custom/power": {
+        "format": "",
+		"on-click": "wlogout",
+		"tooltip": false
+    }
+    }
+}
