@@ -1,7 +1,0 @@
-font-family = 'MartianMono Nerd Font Propo'
-shell-integration=zsh
-fullscreen=false
-background-opacity=0.60
-window-decoration=server
-background-blur=true
-window-padding-balance=true
