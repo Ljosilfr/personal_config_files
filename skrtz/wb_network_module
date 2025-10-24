@@ -1,0 +1,79 @@
+#!/bin/bash
+
+menu() {
+    active=$(nmcli -t -f NAME,DEVICE connection show --active)
+
+    wired_conns=$(nmcli -t -f NAME,TYPE connection show | grep ethernet | sort)
+    vpn_conns=$(nmcli -t -f NAME,TYPE connection show | grep vpn | sort)
+
+    menu_list=""
+
+    # Wired section
+    if [[ -n "$wired_conns" ]]; then
+        menu_list+="Wired\n"
+        while IFS=: read -r name type; do
+            [[ -z "$name" ]] && continue
+            if echo "$active" | grep -q "^$name:"; then
+                prefix=""
+            else
+                prefix=""
+            fi
+            menu_list+="$prefix 󰈀 $name\n"
+        done <<< "$wired_conns"
+        menu_list=$(echo -e "$menu_list" | sed '${/^$/d}')
+    fi
+
+    # VPN section
+    if [[ -n "$vpn_conns" ]]; then
+        if [[ -n "$wired_conns" ]]; then
+            menu_list+="\n"
+        fi
+        menu_list+="VPNs\n"
+        while IFS=: read -r name type; do
+            [[ -z "$name" ]] && continue
+            if echo "$active" | grep -q "^$name:"; then
+                prefix=""
+            else
+                prefix=""
+            fi
+            menu_list+="$prefix 󰖂 $name\n"
+        done <<< "$vpn_conns"
+    fi
+
+    menu_list=$(echo -e "$menu_list" | sed '/^$/d;$!b;$d')
+
+    choice=$(echo -e "$menu_list" | rofi -no-steal-focus -dmenu -theme ~/.config/rofi/network.rasi -no-fixed-num-lines)
+    [[ -z "$choice" ]] && exit 0
+
+    chosen=$(echo "$choice" | sed 's/^.* //')
+    type=$(nmcli -t -f TYPE connection show "$chosen" | head -n1 | cut -d: -f2)
+
+    if echo "$active" | grep -q "^$chosen:"; then
+        nmcli connection down "$chosen" && notify-send "Disconnected" "$chosen"
+    else
+        nmcli connection up "$chosen" && notify-send "Connected" "$chosen"
+    fi
+}
+
+status_json() {
+    vpn_active=$(nmcli -t -f TYPE connection show --active | grep -c vpn)
+    wired_active=$(nmcli -t -f TYPE connection show --active | grep -c ethernet)
+
+    if (( vpn_active > 0 )); then
+        icon="󰖂"
+        text="VPN"
+    elif (( wired_active > 0 )); then
+        icon="󰈀"
+        text="Wired"
+    else
+        icon="󰤭"
+        text="Disconnected"
+    fi
+
+    echo "{\"text\":\"$text\",\"icon\":\"$icon\",\"tooltip\":\"$text\"}"
+}
+
+case "$1" in
+    menu) menu ;;
+    *) status_json ;;
+esac
