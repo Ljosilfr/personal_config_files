@@ -1,92 +1,120 @@
 // -*- mode: jsonc -*-
 {
-    "position": "top",
+    "reload_style_on_change": true,
     "ipc": true,
     "spacing": 0,
-	"exclusive": true,
-	"layer": "top",
-	"height": 25,
-	"start_hidden": false,
-	"reload_style_on_change": true,
-	"margin-top": 5,
+    "exclusive": true,
+    "position": "top",
+    "layer": "top",
+    "height": 30,
+    "margin-top": 8,
 	"margin-bottom": 0,
-	"margin-left": 8,
-	"margin-right": 8,
+    "margin-left": 8,
+    "margin-right": 8,
 
-	"modules-left": [
-		"hyprland/workspaces"	
-	],
-	
+    "modules-left": [
+        "custom/wrapper_l",
+        "hyprland/workspaces",
+        "custom/wrapper_r"
+    ],
     "modules-center": [
         "clock",
-        "gamemode",
+		"custom/separator",
+    	"custom/date",
+        "custom/separator",
         "cpu",
         "memory",
-    	"mpd",       
+        "custom/separator",
+        "mpd",
+        "custom/separator",
+		"gamemode"
     ],
-
     "modules-right": [
-    	"tray",
-        "custom/power" 
+		"custom/network",
+		"custom/separator2",
+        "custom/power"
     ],
-
-	"tray": {
-		"icon-size": 21,
-		"spacing": 15	
-	},
-	"hyprland/workspaces": {
-		"format": "{icon}",
-		"persistent-workspaces": {
-			"*": 6,	
-		},
-		"format-icons": {
-		"active": "",
-		"default": ""
-		}
-	},
-    "mpd": {
-    	"album-artist-len": 12,
-    	"title-len": 24,
-    	"format": "󰽰 {title} — {albumArtist} {stateIcon}",
-    	"on-click": "rmpc togglepause",
-    	"format-paused": "󰽰 {title} — {albumArtist} {stateIcon}",
-    	"format-stopped": "󰽰󰽼",
-		"justify": "center",
-    	"state-icons": {
-    		"playing": "󰽱",
-    		"paused": "󰽼"
-    	}    	
-    },
-    "tray": {
-        "spacing": 10
-    },
-    "cpu": {
-    	"interval": 1,
-    	"format": " {usage}%"	
-    },
-    "gamemode": {
-    	"hide-not-running": false,
-    	"format": "{glyph} Gamemode",
-    	"format-alt": "",
-    	"icon-name": "gaming-app-symbolic",
-    	"use-icon": false,
-    	"icon-spacing": 0,
-    	"icon-size": 0,
-    	"glyph": "󰊴"
-    },
-    "memory": {
-    	"interval": 1,
-    	"format": " {percentage}%  󱧬 {swapPercentage}%"
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "*": 7
+        },
+        "format-icons": {
+            "active": "◈",
+            "default": "─"
+        }
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": " {:%A, %B%e  󰥔 %T}",
+        "format": "󰥔 {:%T}",
         "interval": 1
     },
+    "custom/date": {
+    	"exec": "wb_date_module",
+    	"tooltip": false,
+    	"interval": 60	
+    },
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%",
+		"max-length": 10
+    },
+    "memory": {
+        "interval": 1,
+        "format": "󰒋 {percentage}%  󰯍 {swapPercentage}%"
+    },
+    "mpd": {
+        "album-artist-len": 12,
+        "title-len": 24,
+        "format": "󰽰 {title} — {albumArtist} {stateIcon}",
+        "on-click": "rmpc togglepause",
+        "tooltip": false,
+        "format-paused": "󰽰 {title} — {albumArtist} {stateIcon}",
+        "format-stopped": "󰽰󰽼 It ain't a happy moment, I'm afraid",
+        "justify": "center",
+        "state-icons": {
+            "playing": "󰽱",
+            "paused": "󰽼"
+        }
+    },
+    "gamemode": {
+        "hide-not-running": false,
+        "format": "{glyph}",
+        "format-alt": "{glyph}",
+        "icon-name": "gaming-app-symbolic",
+        "use-icon": false,
+        "icon-spacing": 0,
+        "icon-size": 0,
+        "glyph": "󰺵"
+    },
+    "custom/network": {
+    	"format": "󰈀",
+        "exec": "wb_network_module",
+        "return-type": "json",
+        "tooltip-format": "Network",
+        "interval": 3,
+        "on-click": "wb_network_module menu"
+    },
     "custom/power": {
-        "format": "",
-		"on-click": "wlogout",
-		"tooltip": false
+        "format": "",
+        "on-click": "wleave",
+        "tooltip-format": "Session Management"
+    },
+    "custom/separator": {
+    	"format": "-",
+        "tooltip": false
+    },
+    "custom/separator2": {
+    	"format": "│",
+    	"tooltip": false
+    },
+    "custom/wrapper_l": {
+    	"format": "",
+    	"tooltip": false
+    },
+    "custom/wrapper_r": {
+    	"format": "",
+    	"tooltip": false
     }
     }
 }
